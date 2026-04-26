@@ -27,7 +27,7 @@ is_active = 1 if is_active == "Yes" else 0
 # ---- PREDICTION ----
 
 if st.button("Predict"):
-input_data = np.array([[credit_score, age, tenure, balance,
+    input_data = np.array([[credit_score, age, tenure, balance,
 num_products, has_card, is_active, salary]])
 
 ```
