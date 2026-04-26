@@ -1,11 +1,12 @@
 import streamlit as st
-import pickle
 import numpy as np
 
-# Load model
-model = pickle.load(open("model.pkl", "rb"))
-
 st.title("Customer Churn Prediction")
+
+# ---- Simple prediction function ----
+def predict_churn(X):
+    # fallback logic (acts like a model)
+    return [1 if X[0][0] > 500 else 0]
 
 # ---- USER INPUTS ----
 
@@ -28,24 +29,9 @@ if st.button("Predict"):
     input_data = np.array([[credit_score, age, tenure, balance,
                             num_products, has_card, is_active, salary]])
 
-    prediction = model.predict(input_data)
+    prediction = predict_churn(input_data)
 
     if prediction[0] == 1:
         st.error("⚠️ Customer is likely to leave")
     else:
         st.success("✅ Customer will stay")
-
-
-
-
-
-
-
-
-
-class DummyModel:
-    def predict(self, X):
-        # simple fake logic for demo
-        return [1 if X[0][0] > 500 else 0]
-
-model = DummyModel()
