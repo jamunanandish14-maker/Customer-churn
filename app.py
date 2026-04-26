@@ -34,3 +34,18 @@ if st.button("Predict"):
         st.error("⚠️ Customer is likely to leave")
     else:
         st.success("✅ Customer will stay")
+
+
+
+
+
+
+
+
+
+class DummyModel:
+    def predict(self, X):
+        # simple fake logic for demo
+        return [1 if X[0][0] > 500 else 0]
+
+model = DummyModel()
