@@ -3,7 +3,6 @@ import pickle
 import numpy as np
 
 # Load model
-
 model = pickle.load(open("model.pkl", "rb"))
 
 st.title("Customer Churn Prediction")
@@ -20,20 +19,18 @@ is_active = st.selectbox("Is Active Member", ["No", "Yes"])
 salary = st.number_input("Estimated Salary")
 
 # Convert categorical
-
 has_card = 1 if has_card == "Yes" else 0
 is_active = 1 if is_active == "Yes" else 0
 
 # ---- PREDICTION ----
 
 if st.button("Predict"):
-    input_data = np.array([[credit_score, age, tenure, balance,num_products, has_card, is_active, salary]])
+    input_data = np.array([[credit_score, age, tenure, balance,
+                            num_products, has_card, is_active, salary]])
 
-```
-prediction = model.predict(input_data)
+    prediction = model.predict(input_data)
 
-if prediction[0] == 1:
-    st.error("⚠️ Customer is likely to leave")
-else:
-    st.success("✅ Customer will stay")
-```
+    if prediction[0] == 1:
+        st.error("⚠️ Customer is likely to leave")
+    else:
+        st.success("✅ Customer will stay")
